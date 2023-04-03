@@ -2,7 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
-import { Contacts } from '../../api/stuff/Contacts.js';
+import { Contacts } from '../../api/contact/Contacts.js';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Contact from '../components/Contact';
 
