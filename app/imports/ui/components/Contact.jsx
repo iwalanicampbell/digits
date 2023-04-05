@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import Image from 'react-bootstrap/Image';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
+import { ListGroup } from 'react-bootstrap';
+import Note from './Note';
+import AddNote from '../pages/AddNote';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
-const Contact = ({ contact }) => (
+const Contact = ({ contact, notes }) => (
   <Card>
     <Card.Header>
       <Image src={contact.image} width={75} />
@@ -16,6 +19,10 @@ const Contact = ({ contact }) => (
       <Card.Text>
         {contact.description}
       </Card.Text>
+      <ListGroup variant="flush">
+        {notes.map((note) => <Note key={note._id} note={note} />)}
+      </ListGroup>
+      <AddNote owner={contact.owner} contactId={contact._id} />
       <Link to={`/edit/${contact._id}`}>Edit</Link>
     </Card.Body>
   </Card>
@@ -32,6 +39,13 @@ Contact.propTypes = {
     owner: PropTypes.string,
     _id: PropTypes.string,
   }).isRequired,
+  notes: PropTypes.arrayOf(PropTypes.shape({
+    note: PropTypes.string,
+    owner: PropTypes.string,
+    createdAt: Date,
+    contactId: PropTypes.instanceOf(Date),
+    _id: PropTypes.string,
+  })).isRequired,
 };
 
 export default Contact;
